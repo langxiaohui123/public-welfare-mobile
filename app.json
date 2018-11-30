@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/home/index",
+    "pages/center/index",
+     "pages/msg/index",
+    "pages/shopCar/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "homePage",
+    "navigationBarTextStyle":"#fff"
+  },
+  "tabBar":{
+    "color":"#D0D2DA",
+    "selectedColor":"#ff6504",
+    "borderStyle":"#000",
+    "backgroundColor":"#000",
+    "box-shadow":"0 0 6px 0",
+    "list":[{
+      "pagePath":"pages/home/index",
+      "iconPath":"images/home-off.png",
+      "selectedIconPath":"images/home-on.png",
+      "text":"home"
+    },{
+      "pagePath":"pages/shopCar/index",
+      "iconPath":"images/cart-off.png",
+      "selectedIconPath":"images/cart-on.png",
+      "text":"shopCar"
+    },{
+      "pagePath":"pages/msg/index",
+      "iconPath":"images/msg-off.png",
+      "selectedIconPath":"images/msg-on.png",
+      "text":"msg"
+    },{
+      "pagePath":"pages/center/index",
+      "iconPath":"images/order-off.png",
+      "selectedIconPath":"images/order-on.png",
+      "text":"center"
+    }]
+  }
+}

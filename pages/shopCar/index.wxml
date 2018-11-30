@@ -1,0 +1,22 @@
+<!--shopCar.wxml-->
+<view class="">
+	<view id="tapTest" data-hi="WeChat" bindtap="tapName"> WX类型 </view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

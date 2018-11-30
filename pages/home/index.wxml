@@ -1,0 +1,150 @@
+<!--index.wxml-->
+<view class="sTab">
+  <view class="sTabItem {{currentTab == 0 ? 'on':''}}"  data-current="0" bindtap="clickTab">模态框</view>
+  <view class="sTabItem {{currentTab == 1 ? 'on':''}}"  data-current="1" bindtap="clickTab">特效库</view>
+  <view class="sTabItem {{currentTab == 2 ? 'on':''}}"  data-current="2" bindtap="clickTab">提交</view>
+  <view class="sTabItem {{currentTab == 3 ? 'on':''}}"  data-current="3" bindtap="clickTab">列表</view>
+</view>
+<swiper current = "{{currentTab}}" duration="300" bindchange="sTab" class="swiper-wrap">
+    <swiper-item>
+      <view>
+          <swiper class="swiper" indicator-dots="true"  interval="5000" duration="1000"  circular="true">    
+                <block wx:for="{{imagesGroup}}" wx:for-index="index">    
+                  <swiper-item>    
+                    <image src="{{item.url}}" class="slide-image" mode="aspectFill"/>  
+                  </swiper-item>    
+                </block>    
+          </swiper> 
+      </view>
+      <view>
+          <!-- loadding弹出框xxxx -->
+         <loading hidden="{{loadingHidden}}">
+           加载中...
+         </loading>
+         <button  bindtap="loadingTap">加载loading</button>
+         <!--modal弹出框-->
+         <button bindtap="listenerButton">弹出modal</button>
+         <modal 
+              title="退出应用"
+              hidden="{{hiddenModal}}"
+              confirm-text="再看看"
+              cancel-text="退出"
+              bindconfirm="listenerConfirm"
+              bindcancel="listenerCancel" >
+              您是否真的要退出应用<input type="text" placeholder="请输入姓名" />
+              </modal>
+      </view>
+     <!-- 封装测试 model-->
+      <view>
+        <button  bindtap="testModel">测试demo封装</button>
+      </view>
+
+      
+    </swiper-item>
+    <swiper-item>
+      <view class="container">
+        <view class="page-body">
+          <view class="page-section">
+            <view class="animation-element-wrapper">
+              <view class="animation-element" animation="{{animation}}"></view>
+            </view>
+            <scroll-view class="animation-buttons" scroll-y="true">
+              <button class="animation-button" bindtap="rotate">旋转</button>
+              <button class="animation-button" bindtap="scale">缩放</button>
+              <button class="animation-button" bindtap="translate">移动</button>
+              <button class="animation-button" bindtap="skew">倾斜</button>
+              <button class="animation-button" bindtap="rotateAndScale">旋转并缩放</button>
+              <button class="animation-button" bindtap="rotateThenScale">旋转后缩放</button>
+              <button class="animation-button" bindtap="all">同时展示全部</button>
+              <button class="animation-button" bindtap="allInQueue">顺序展示全部</button>
+              <button class="animation-button animation-button-reset" bindtap="reset">还原</button>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view>
+        <view id="adduser">  
+            <form bindsubmit="formSubmit" bindreset="formReset" id="form">  
+                 <view class="section">  
+                    <view class="section__title">姓名:</view>  
+                    <view class='form-group'>  
+                        <input type="text" class="input-text" name="username" placeholder="请输入姓名" />  
+                    </view>      
+                </view>  
+                <view class="section section_gap">  
+                    <view class="section__title">年龄:</view>  
+                    <view class='form-group'>  
+                        <slider name="age" show-value ></slider>  
+                    </view>      
+                </view>  
+                <view class="section section_gap">  
+                    <view class="section__title">性别:</view>  
+                    <view class='form-group'>  
+                        <radio-group name="gender">  
+                          <label><radio value="1"/>男</label>  
+                          <label><radio value="0"/>女</label>  
+                        </radio-group>  
+                    </view>      
+                </view>  
+                <view class="section">  
+                    <view class="section__title">地区选择:</view>  
+                    <view class='form-group'>  
+                        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">  
+                            <view class="picker">  
+                                <input type="hidden" disabled="true" name="addr" value="{{array[index]}}"/>  
+                            </view>  
+                        </picker>  
+                    </view>  
+                </view>  
+                <view class="section section_gap">  
+                    <view class="section__title">爱好:</view>  
+                    <view class='form-group'>  
+                        <checkbox-group name="hobby">  
+                            <label><checkbox value="羽毛球"/>羽毛球</label>  
+                            <label><checkbox value="游泳"/>游泳</label>  
+                            <label><checkbox value="跳绳"/>跳绳</label>  
+                        </checkbox-group>  
+                    </view>  
+                </view> 
+                <view class="section section_gap">  
+                    <view class="section__title">是否显示:</view>  
+                    <view class='form-group'>  
+                         <switch name="isshow"/>  
+                    </view>  
+                </view>  
+                <view class="section btn-area">  
+                    <button formType="submit" id="sub">提交</button>  
+                    <button formType="reset" id="qing">清空</button>  
+                </view>  
+            </form>  
+             <!-- 黑框提示并消失 -->  
+            <toast hidden="{{toast1Hidden}}" bindchange="toast1Change">  
+                {{notice_str}}  
+            </toast>  
+            <!-- 确认框 及 提示框 -->  
+            <view class="page__bd">  
+                <modal title="确认" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="confirm_one" bindcancel="cancel_one">  
+                    确认提交么？  
+                </modal>  
+                <modal class="modal" hidden="{{modalHidden2}}" no-cancel bindconfirm="modalChange2" bindcancel="modalChange2">  
+                    <view> 提示 </view>  
+                    <view> 清空成功 </view>  
+                </modal>  
+            </view>  
+        </view>   
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view>
+        <block wx:for="{{articleGroup}}" wx:for-index="index">
+          <view><image src="{{item.url}}" mode="aspectFill" class="art-image"/></view>
+          <view>
+            <view>{{item.title}}</view>
+            <view>{{item.content}}</view>
+          </view>
+        </block>
+      </view>
+    </swiper-item>
+</swiper>
